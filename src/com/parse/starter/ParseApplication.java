@@ -1,20 +1,26 @@
 package com.parse.starter;
 
-import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseUser;
+import java.util.jar.Attributes.Name;
 
 import android.app.Application;
+import android.widget.EditText;
+
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
 
+
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
+		
 		// Add your initialization code here
-		Parse.initialize(this, YOUR_APPLICATION_ID, YOUR_CLIENT_KEY);
-
+		Parse.initialize(this, "3xb92uewkwGwRGulPj9spBCNiD2Dx4Uy7bvFLXdu", "HlimuCif48Tz2xw73ne9Jg66kERQWYofvv0NQ7Pl");
 
 		ParseUser.enableAutomaticUser();
 		ParseACL defaultACL = new ParseACL();
@@ -23,6 +29,14 @@ public class ParseApplication extends Application {
 		defaultACL.setPublicReadAccess(true);
 		
 		ParseACL.setDefaultACL(defaultACL, true);
+		
+		ParseObject testObject = new ParseObject("Resources");
+		testObject.put("name", "orange");
+		testObject.put("qauntity", 1);
+		testObject.put("Description", "Its yellow");
+		testObject.saveInBackground();
 	}
+	
+
 
 }
