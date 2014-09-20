@@ -12,8 +12,6 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
-
-
 	
 	@Override
 	public void onCreate() {
@@ -29,14 +27,27 @@ public class ParseApplication extends Application {
 		defaultACL.setPublicReadAccess(true);
 		
 		ParseACL.setDefaultACL(defaultACL, true);
-		
+		/*
 		ParseObject testObject = new ParseObject("Resources");
 		testObject.put("name", "orange");
 		testObject.put("qauntity", 1);
 		testObject.put("Description", "Its yellow");
 		testObject.saveInBackground();
+		*/
+		
+		
+		
 	}
 	
+	public static void insertInCloud(resource r){
+		ParseObject testObject = new ParseObject("Resources");
+		testObject.put("name", r.Name);
+		testObject.put("qauntity", r.quantity);
+		testObject.put("Description", r.Description);
+		
+		testObject.saveInBackground();
+	}
+
 
 
 }
