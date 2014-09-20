@@ -4,6 +4,7 @@ public class resource {
 
 	String Name;
 	String Description;
+	String Location;
 	int quantity;
 	
 }

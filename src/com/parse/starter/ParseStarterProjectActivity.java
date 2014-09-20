@@ -8,12 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 
 public class ParseStarterProjectActivity extends Activity {
 	/** Called when the activity is first created. */
 	
-	EditText name, quantity, desc;
-	Button submit;
+	EditText name, quantity, desc, loc;
+	Button submit,get;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,8 +25,10 @@ public class ParseStarterProjectActivity extends Activity {
 		name = (EditText) findViewById(R.id.nameText);
 		quantity = (EditText) findViewById(R.id.quantityText);
 		desc = (EditText) findViewById(R.id.descriptionText);
+		loc = (EditText) findViewById(R.id.loc);
 		
 		submit = (Button) findViewById(R.id.submit);
+		get = (Button) findViewById(R.id.getAll);
 		
 		submit.setOnClickListener(new OnClickListener() {
 			
@@ -37,6 +40,22 @@ public class ParseStarterProjectActivity extends Activity {
 				name.setText("");
 				desc.setText("");
 				quantity.setText("");
+				loc.setText("");
+				
+			}
+		});
+		
+		get.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try {
+					ParseApplication.getAll();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		});
 	
@@ -48,6 +67,7 @@ public class ParseStarterProjectActivity extends Activity {
 		
 		r.Name = name.getText().toString();
 		r.Description = desc.getText().toString();
+		r.Location = loc.getText().toString();
 		r.quantity = Integer.parseInt(quantity.getText().toString());
 		
 		return r;
